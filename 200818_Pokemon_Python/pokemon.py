@@ -154,8 +154,6 @@ class Trainer:
             print("The other player has no cards left you win the game!!!")
             sys.exit()
 
-    # def test(self, other_player):
-    #     print("this is a test {other_player}".format(other_player = other_player.name))    
 
 playerA = Trainer('Martin', [tepig, samurott, thundurus], 2)
 playerB = Trainer('2nd Player', [ducklett, tepig, zekrom], 2) 
