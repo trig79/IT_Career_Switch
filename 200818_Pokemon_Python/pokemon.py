@@ -4,12 +4,11 @@ import sys
 # name, level, type (for example "Fire" or "Water"), maximum health, current health, 
 # and whether or not the Pokémon was knocked out. In our implementation, the maximum health was determined by the Pokémon’s level.
 class Pokemon:
-    def __init__(self, name, level, type):
+    def __init__(self, name, level):
         self.name = name
         self.level = level                  
         self.health = level * 5
         self.max_health = level * 5
-        self.type = type                    
         self.is_knocked_out = False
     
 # this is used to return infortmation in english, without this we would only retrieve a memory address
@@ -25,6 +24,7 @@ class Pokemon:
     def rejuvenate(self):
         if self.is_knocked_out == True:
             self.is_knocked_out = False
+            self.health = self.max_health # ADDED LAST NIGHT
             print("{name} has been revived and is back in the game!!!".format(name = self.name))
         else:
             self.health = self.max_health
@@ -73,16 +73,19 @@ class Pokemon:
 # it also provides building blocks to expand the game and define special features for the differing types of pokemon.
 
 class FireType(Pokemon):
-    def __init__(self, name, level = 5, type = 'Fire'):          
-        super().__init__(name, level, 'Fire')
+    def __init__(self, name, level = 5):          
+        super().__init__(name, level)
+        self.type = 'Fire'
 
 class ElectricType(Pokemon):
-    def __init__(self, name, level = 5, type = 'Electric'):          
-        super().__init__(name, level, 'Electric')
+    def __init__(self, name, level = 5):          
+        super().__init__(name, level)
+        self.type = 'Electric'
 
 class WaterType(Pokemon):
-    def __init__(self, name, level = 5, type = 'Water'):          
-        super().__init__(name, level, 'Water')
+    def __init__(self, name, level = 5):          
+        super().__init__(name, level)
+        self.type = 'Water'
 
 # Creation of pokemon cards that will be played in this game
 tepig = FireType('tepig', 3)
@@ -91,7 +94,7 @@ ducklett = WaterType('Ducklett', 7)
 samurott = WaterType('Samurott', 5)
 zekrom = ElectricType('Zekrom', 6)
 thundurus = ElectricType('Thundurus', 5)    
-        
+ 
 # create trainer class. A Trainer can have up to 6 pokemon cards, which we stored in list, 
 # the trainer also requires a name, number of potions they have and current_active_card represented as number 
 class Trainer:
