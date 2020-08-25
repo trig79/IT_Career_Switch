@@ -103,10 +103,14 @@ class Trainer:
         self.pokemons = pokemons
         self.potions = potions
         self.current_card_active = 0
+
+        if len(self.pokemons) > 6:
+            print("{name} you have selcted too many cards, you are only allowed a maximum of 6".format(name = self.name))
     
     def __repr__(self):
         print("'{name}' has the following 3 pokemon: {list}".format(name = self.name, list = self.pokemons))
         return "'{name}' current active card is {active}\n".format(name = self.name, active = self.pokemons[self.current_card_active])
+
 
 # create method to allow use of potion on current card in play.
 # this checks that current player has enough potions before applying the rejuventate function
@@ -158,7 +162,7 @@ class Trainer:
             sys.exit()
 
 
-playerA = Trainer('Martin', [tepig, samurott, thundurus], 2)
+playerA = Trainer('Martin', [tepig, samurott, thundurus, tepig, samurott, thundurus, tepig, samurott, thundurus], 2)
 playerB = Trainer('2nd Player', [ducklett, tepig, zekrom], 2) 
 
 
